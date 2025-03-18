@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sunnypilot Wiki | Coming Soon</title>
+  <style>
+    :root {
+      --primary-color: #ff8c00;
+      --secondary-color: #ffd700;
+      --dark-color: #222;
+      --light-color: #f8f8f8;
+      --animation-duration: 1.5s;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: var(--dark-color);
+      color: var(--light-color);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    header {
+      padding: 2rem 0;
+    }
+    
+    .logo {
+      position: relative;
+      font-size: 4rem;
+      font-weight: 700;
+      letter-spacing: -2px;
+      margin-bottom: 2rem;
+      display: inline-block;
+      color: var(--light-color);
+      text-shadow: 0 0 10px rgba(255, 140, 0, 0.8);
+    }
+    
+    .logo::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      bottom: -10px;
+      left: 0;
+      background: linear-gradient(90deg, transparent, var(--primary-color), var(--secondary-color), transparent);
+    }
+    
+    .tagline {
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+      opacity: 0.9;
+    }
+    
+    .coming-soon {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .coming-soon::before {
+      content: '';
+      position: absolute;
+      width: 120%;
+      height: 100%;
+      top: 0;
+      left: -10%;
+      background: linear-gradient(90deg, transparent, rgba(255, 140, 0, 0.1), transparent);
+      animation: slide var(--animation-duration) infinite;
+    }
+    
+    @keyframes slide {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    
+    .description {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    
+    .disclaimer {
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #ffcc80;
+    }
+    
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    .feature {
+      flex: 1;
+      min-width: 250px;
+      max-width: 300px;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .feature h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .feature p {
+      opacity: 0.8;
+    }
+    
+    .sun {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--secondary-color), var(--primary-color));
+      box-shadow: 0 0 40px var(--primary-color);
+      animation: pulse 4s infinite alternate;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.1); opacity: 1; }
+    }
+    
+    .rays {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      animation: spin 20s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .ray {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background-color: var(--secondary-color);
+      transform-origin: bottom center;
+    }
+    
+    footer {
+      margin-top: auto;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+    
+    .progress-container {
+      width: 80%;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      background: rgba(255, 255, 255, 0.1);
+      height: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      width: 0;
+      border-radius: 10px;
+      transition: width 1s ease-in-out;
+    }
+    
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .particle {
+      position: absolute;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+      opacity: 0.3;
+    }
+    
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 3rem;
+      }
+      
+      .coming-soon {
+        font-size: 2rem;
+      }
+      
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .feature {
+        max-width: 100%;
+      }
+      
+      .sun {
+        width: 80px;
+        height: 80px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 2.5rem;
+      }
+      
+      .coming-soon {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles"></div>
+  
+  <div class="sun">
+    <div class="rays"></div>
+  </div>
+  
+  <div class="container">
+    <header>
+      <h1 class="logo">sunnypilot</h1>
+      <p class="tagline">The community-driven knowledge base for enthusiasts and developers</p>
+    </header>
+    
+    <main>
+      <h2 class="coming-soon">Wiki Coming Soon</h2>
+      
+      <p class="description">
+        We're working hard to bring you the most comprehensive resource for sunnypilot. 
+        Our wiki will feature detailed guides, documentation, and community contributions.
+      </p>
+      
+      <p class="disclaimer">
+        PS: I asked Claude to build a placeholder index and it built this awesome page, so even though the text might not all make sense, it looks pretty awesome lol
+      </p>
+      
+      <!-- <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div> -->
+      
+      <div class="features">
+        <div class="feature">
+          <h3>Comprehensive Guides</h3>
+          <p>Detailed documentation for beginners and advanced users alike.</p>
+        </div>
+        <div class="feature">
+          <h3>Community Contributions</h3>
+          <p>Share your knowledge and collaborate with other enthusiasts.</p>
+        </div>
+        <div class="feature">
+          <h3>Real-time Updates</h3>
+          <p>Stay informed with the latest developments and releases.</p>
+        </div>
+      </div>
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 sunnypilot. All rights reserved.</p>
+    </footer>
+  </div>
+  
+  <script>
+    // Create sun rays
+    const rays = document.querySelector('.rays');
+    const rayCount = 12;
+    
+    for (let i = 0; i < rayCount; i++) {
+      const ray = document.createElement('div');
+      ray.classList.add('ray');
+      ray.style.transform = `rotate(${i * (360 / rayCount)}deg) translateX(60px)`;
+      rays.appendChild(ray);
+    }
+    
+    // Create particles
+    const particlesContainer = document.querySelector('.particles');
+    const particleCount = 50;
+    
+    for (let i = 0; i < particleCount; i++) {
+      createParticle();
+    }
+    
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      
+      const size = Math.random() * 5 + 1;
+      const posX = Math.random() * window.innerWidth;
+      const posY = Math.random() * window.innerHeight;
+      const duration = Math.random() * 60 + 30;
+      const delay = Math.random() * 10;
+      
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${posX}px`;
+      particle.style.top = `${posY}px`;
+      
+      particlesContainer.appendChild(particle);
+      
+      animateParticle(particle, duration, delay);
+    }
+    
+    function animateParticle(particle, duration, delay) {
+      const startPosX = parseFloat(particle.style.left);
+      const startPosY = parseFloat(particle.style.top);
+      const moveX = (Math.random() - 0.5) * 200;
+      const moveY = (Math.random() - 0.5) * 200;
+      
+      let startTime = null;
+      
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp + delay * 1000;
+        const elapsed = timestamp - startTime;
+        
+        if (elapsed < 0) {
+          requestAnimationFrame(step);
+          return;
+        }
+        
+        const progress = (elapsed % (duration * 1000)) / (duration * 1000);
+        
+        // Sine wave movement
+        const x = startPosX + moveX * Math.sin(progress * Math.PI * 2);
+        const y = startPosY + moveY * Math.sin(progress * Math.PI * 2);
+        
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+        particle.style.opacity = 0.3 + 0.2 * Math.sin(progress * Math.PI * 2);
+        
+        requestAnimationFrame(step);
+      }
+      
+      requestAnimationFrame(step);
+    }
+    
+    // Progress bar animation
+    const progressBar = document.getElementById('progressBar');
+    let progress = 0;
+    
+    function animateProgress() {
+      progress += Math.random() * 0.5;
+      if (progress > 80) progress = 80; // Cap at 80% since it's "coming soon"
+      progressBar.style.width = `${progress}%`;
+      
+      setTimeout(animateProgress, 3000 + Math.random() * 5000);
+    }
+    
+    animateProgress();
+    
+    // Update particles on window resize
+    window.addEventListener('resize', () => {
+      particlesContainer.innerHTML = '';
+      for (let i = 0; i < particleCount; i++) {
+        createParticle();
+      }
+    });
+  </script>
+</body>
+</html>
